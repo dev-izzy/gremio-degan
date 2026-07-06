@@ -1,0 +1,177 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
+
+body{
+    background:linear-gradient(180deg,#0f0f16,#1b1123,#0f0f16);
+    color:#ffffff;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(10px);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#b35cff;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    margin-left:25px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#b35cff;
+}
+
+.hero{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:70px 20px;
+}
+
+.logo-box{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:#4c1f52;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:90px;
+    box-shadow:0 0 40px rgba(179,92,255,.45);
+}
+
+.logo-box img{
+    width:150px;
+}
+
+section{
+    padding:60px 8%;
+}
+
+.titulo{
+    text-align:center;
+    margin-bottom:35px;
+    font-size:35px;
+    color:#d39cff;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(12px);
+    padding:30px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(179,92,255,.3);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#d39cff;
+}
+
+.evento{
+    background:#4c1f52;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.evento h2{
+    margin-bottom:15px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    background:#1d1d28;
+    border:none;
+    border-radius:10px;
+    color:white;
+    outline:none;
+}
+
+button{
+    margin-top:20px;
+    padding:15px 35px;
+    border:none;
+    border-radius:30px;
+    background:#b35cff;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#d39cff;
+}
+
+footer{
+    margin-top:60px;
+    padding:25px;
+    text-align:center;
+    background:#09090d;
+}
+
+@media (max-width:768px){
+
+header{
+    flex-direction:column;
+    gap:20px;
+}
+
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+nav a{
+    margin:10px;
+}
+
+.logo-box{
+    width:170px;
+    height:170px;
+    font-size:70px;
+}
+
+.titulo{
+    font-size:28px;
+}
+
+}
