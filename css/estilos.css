@@ -123,6 +123,20 @@ nav a:hover{
     object-fit:cover;
 
 }
+.hero h1{
+
+    margin-top:35px;
+
+    font-size:50px;
+
+    background:linear-gradient(90deg,#7c3aed,#c084fc);
+
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:0 0 20px #7c3aed;
+
+}
 
 /* ===========================
    SEÇÕES
@@ -338,7 +352,7 @@ button{
 
     border-radius:12px;
 
-    background:#7c3aed;
+    background:#5d24bf;
 
     color:white;
 
