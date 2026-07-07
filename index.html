@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 
+
 <body>
 
 <header>
@@ -200,18 +201,23 @@
 <!-- SUGESTÕES -->
 
 <section id="contato">
+<input 
+    id="nome" 
+    type="text" 
+    placeholder="Seu nome e série"
+>
 
-    <h2 class="titulo">💬 Envie uma sugestão</h2>
+<textarea 
+    id="sugestao" 
+    rows="6" 
+    placeholder="Escreva sua sugestão..."
+></textarea>
 
-    <p class="texto-centro">
-        Sua opinião é importante para melhorar nossa escola.
-    </p>
+<button onclick="enviarSugestao()">
+    Enviar Sugestão
+</button>
 
-    <input type="text" placeholder="Seu nome e serie">
-
-    <textarea rows="6" placeholder="Escreva sua sugestão..."></textarea>
-
-    <button>Enviar Sugestão</button>
+<p id="mensagem"></p>
 
 </section>
 
@@ -231,6 +237,8 @@
     </p>
 
 </footer>
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/script.js"></script>
 
 </body>
 
