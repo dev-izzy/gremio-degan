@@ -1,177 +1,479 @@
+/* ===========================
+   RESET
+=========================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:linear-gradient(180deg,#0f0f16,#1b1123,#0f0f16);
-    color:#ffffff;
+
+    background:#0f0f1a;
+    color:white;
+
 }
 
+/* ===========================
+   HEADER
+=========================== */
+
 header{
+
+    position:sticky;
+    top:0;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 8%;
-    background:rgba(255,255,255,.05);
-    backdrop-filter:blur(10px);
-    position:sticky;
-    top:0;
-    z-index:100;
+
+    padding:18px 8%;
+
+    background:#17172b;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.4);
+
+    z-index:999;
+
 }
 
 .logo{
+
     font-size:28px;
     font-weight:bold;
+    color:#b266ff;
+
 }
 
-.logo span{
-    color:#b35cff;
+nav{
+
+    display:flex;
+    gap:30px;
+
 }
 
 nav a{
-    text-decoration:none;
+
     color:white;
-    margin-left:25px;
+    text-decoration:none;
     transition:.3s;
+
 }
 
 nav a:hover{
-    color:#b35cff;
+
+    color:#b266ff;
+
 }
 
+/* ===========================
+   HERO
+=========================== */
+
 .hero{
+
+    min-height:90vh;
+
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
-    padding:70px 20px;
+
+    text-align:center;
+
+    padding:40px;
+
 }
 
 .logo-box{
-    width:220px;
-    height:220px;
+
+    width:180px;
+    height:180px;
+
     border-radius:50%;
-    background:#4c1f52;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     font-size:90px;
-    box-shadow:0 0 40px rgba(179,92,255,.45);
+
+    background:#191933;
+
+    border:4px solid #7c3aed;
+
+    box-shadow:
+    0 0 30px #7c3aed;
+
+    animation:flutuar 3s ease-in-out infinite;
+
 }
 
-.logo-box img{
-    width:150px;
+.hero h1{
+
+    margin-top:35px;
+
+    font-size:50px;
+
+    color:#b266ff;
+
 }
+
+.hero p{
+
+    max-width:700px;
+
+    margin-top:20px;
+
+    line-height:1.8;
+
+    color:#d9d9d9;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   SEÇÕES
+=========================== */
 
 section{
-    padding:60px 8%;
+
+    padding:80px 10%;
+
 }
 
 .titulo{
+
     text-align:center;
-    margin-bottom:35px;
-    font-size:35px;
-    color:#d39cff;
+
+    margin-bottom:50px;
+
+    color:#b266ff;
+
+    font-size:38px;
+
 }
 
+/* ===========================
+   SOBRE
+=========================== */
+
+.sobre{
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+
+}
+
+.sobre p{
+
+    line-height:1.8;
+
+    color:#d5d5d5;
+
+    margin-bottom:20px;
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   CARDS
+=========================== */
+
 .cards{
+
     display:grid;
+
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
+
+    gap:30px;
+
 }
 
 .card{
-    background:rgba(255,255,255,.06);
-    backdrop-filter:blur(12px);
+
+    background:#1a1a2f;
+
+    border:2px solid #34345e;
+
+    border-radius:18px;
+
     padding:30px;
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,.08);
+
     transition:.3s;
+
+    text-align:center;
+
 }
 
 .card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 25px rgba(179,92,255,.3);
+
+    transform:translateY(-10px);
+
+    border-color:#a855f7;
+
+    box-shadow:0 0 25px rgba(168,85,247,.4);
+
 }
 
 .card h3{
+
     margin-bottom:15px;
-    color:#d39cff;
+
+    color:#c084fc;
+
 }
 
+.card p{
+
+    color:#ddd;
+
+}
+
+.icone{
+
+    font-size:55px;
+
+    display:block;
+
+    margin-bottom:20px;
+
+}
+
+/* ===========================
+   EVENTO
+=========================== */
+
 .evento{
-    background:#4c1f52;
-    padding:40px;
-    border-radius:20px;
+
+    max-width:800px;
+
+    margin:auto;
+
     text-align:center;
+
+    background:#1a1a2f;
+
+    padding:50px;
+
+    border-radius:20px;
+
+    border:2px solid #7c3aed;
+
 }
 
 .evento h2{
-    margin-bottom:15px;
+
+    color:#b266ff;
+
+    margin-bottom:20px;
+
+}
+
+.evento h3{
+
+    margin-bottom:20px;
+
+    font-size:30px;
+
+}
+
+.evento p{
+
+    margin-top:12px;
+
+    color:#ddd;
+
+    line-height:1.8;
+
+}
+
+/* ===========================
+   FORMULÁRIO
+=========================== */
+
+.texto-centro{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#ccc;
+
 }
 
 input,
 textarea{
+
     width:100%;
-    padding:15px;
-    margin-top:15px;
-    background:#1d1d28;
+
+    margin-bottom:20px;
+
+    padding:18px;
+
     border:none;
-    border-radius:10px;
+
+    border-radius:12px;
+
+    background:#1b1b30;
+
     color:white;
+
+    font-size:16px;
+
+}
+
+input:focus,
+textarea:focus{
+
     outline:none;
+
+    border:2px solid #a855f7;
+
 }
 
 button{
-    margin-top:20px;
-    padding:15px 35px;
+
+    width:100%;
+
+    padding:18px;
+
     border:none;
-    border-radius:30px;
-    background:#b35cff;
+
+    border-radius:12px;
+
+    background:#7c3aed;
+
     color:white;
-    font-size:17px;
+
+    font-size:18px;
+
     cursor:pointer;
+
     transition:.3s;
+
 }
 
 button:hover{
-    background:#d39cff;
+
+    background:#9333ea;
+
+    transform:scale(1.02);
+
 }
+
+/* ===========================
+   FOOTER
+=========================== */
 
 footer{
-    margin-top:60px;
-    padding:25px;
+
+    background:#17172b;
+
     text-align:center;
-    background:#09090d;
+
+    padding:50px 20px;
+
+    margin-top:80px;
+
 }
 
-@media (max-width:768px){
+footer h3{
 
-header{
-    flex-direction:column;
-    gap:20px;
+    color:#b266ff;
+
+    margin-bottom:15px;
+
 }
 
-nav{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
+footer p{
+
+    color:#bdbdbd;
+
+    margin-top:10px;
+
 }
 
-nav a{
-    margin:10px;
+/* ===========================
+   ANIMAÇÃO
+=========================== */
+
+@keyframes flutuar{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
 }
 
-.logo-box{
-    width:170px;
-    height:170px;
-    font-size:70px;
-}
+/* ===========================
+   RESPONSIVO
+=========================== */
 
-.titulo{
-    font-size:28px;
-}
+@media(max-width:900px){
+
+    header{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+    nav{
+
+        flex-wrap:wrap;
+
+        justify-content:center;
+
+        gap:18px;
+
+    }
+
+    .hero h1{
+
+        font-size:38px;
+
+    }
+
+    .titulo{
+
+        font-size:30px;
+
+    }
+
+    .logo-box{
+
+        width:150px;
+        height:150px;
+
+        font-size:70px;
+
+    }
 
 }
