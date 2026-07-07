@@ -2,11 +2,10 @@ const supabaseUrl = "https://ywpjippxynugqgwhlvsw.supabase.co";
 const supabaseKey = "sb_publishable_-33tP63hIJ6kj9n0Jtw6jg_caEqBpXq";
 
 
-const supabase = window.supabase.createClient(
+const clienteSupabase = window.supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
-
 
 
 async function enviarSugestao(){
@@ -15,13 +14,13 @@ async function enviarSugestao(){
     const sugestao = document.getElementById("sugestao").value;
 
 
-    if(nome === "" || sugestao === ""){
+    if(nome.trim() === "" || sugestao.trim() === ""){
         alert("Preencha todos os campos!");
         return;
     }
 
 
-    const { error } = await supabase
+    const { error } = await clienteSupabase
         .from("sugestoes")
         .insert([
             {
@@ -33,16 +32,17 @@ async function enviarSugestao(){
 
     if(error){
 
-        console.log(error);
+        console.error("Erro Supabase:", error);
         alert("Erro ao enviar sugestão!");
 
-    }else{
+    } else {
 
         alert("Sugestão enviada com sucesso!");
+
 
         document.getElementById("nome").value = "";
         document.getElementById("sugestao").value = "";
 
     }
 
-}
+}            
