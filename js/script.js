@@ -32,8 +32,8 @@ window.enviarSugestao = async function(){
 
     if(error){
 
-        console.error(error);
-        alert("Erro ao enviar sugestão!");
+            console.error(error);
+           alert("Erro: " + error.message);
 
     } else {
 
