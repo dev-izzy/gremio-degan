@@ -6,7 +6,7 @@ const db = window.supabase.createClient(
     supabaseKey
 );
 
-// Se já estiver logado, vai direto para o painel
+ //Se já estiver logado, vai direto para o painel
 (async () => {
 
     const {
@@ -15,7 +15,7 @@ const db = window.supabase.createClient(
 
     if (session) {
 
-        window.location.href = "admin.html";
+       window.location.href = "admin.html";
 
     }
 
@@ -44,15 +44,19 @@ async function login(event){
 
     });
 
-    if(error){
+if (error) {
 
-        mensagem.textContent = "E-mail ou senha inválidos.";
+    console.error(error);
 
-        console.error(error);
+    mensagem.textContent = error.message;
 
-        return;
+    alert(error.message);
 
-    }
+    return;
+
+}
+
+    
 
     window.location.href = "admin.html";
 
