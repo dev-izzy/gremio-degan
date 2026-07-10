@@ -27,17 +27,16 @@ window.login = async function () {
         return;
     }
 
-    const { error } = await db.auth.signInWithPassword({
-        email,
-        password: senha
-    });
+const { data, error } = await db.auth.signInWithPassword({
+    email,
+    password: senha
+});
 
-    if (error) {
-        alert("E-mail ou senha inválidos.");
-        console.error(error);
-        return;
-    }
+if (error) {
+    alert(error.message);
+    return;
+}
 
-    window.location.href = "admin.html";
+window.location.replace("admin.html");
 
 };

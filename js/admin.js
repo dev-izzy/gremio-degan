@@ -12,23 +12,23 @@ const db = window.supabase.createClient(
 
 async function verificarLogin() {
 
-    const { data, error } = await db.auth.getSession();
+    const {
+        data: { session },
+        error
+    } = await db.auth.getSession();
 
     if (error) {
         console.error(error);
-        window.location.replace("login.html");
         return false;
     }
 
-    if (!data.session) {
+    if (!session) {
         window.location.replace("login.html");
         return false;
     }
 
     return true;
-
 }
-
 // ===========================
 // CARREGAR PAINEL
 // ===========================
@@ -42,6 +42,7 @@ window.onload = async function () {
     await carregarSugestoes();
 
 };
+
 // ===========================
 // LOGOUT
 // ===========================
