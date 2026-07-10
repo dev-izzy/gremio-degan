@@ -8,33 +8,62 @@
 body{
 
     background:#0f172a;
-    height:100vh;
+    min-height:100vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
 }
+
+
+/* CONTAINER PRINCIPAL */
 
 .container{
 
-    width:100%;
+    width:380%;
+    max-width:430px;
+
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
 
-}
+    background:#1e293b;
 
-.login-box{
+    padding:35px;
 
-    width:420px;
-    background:#13232f;
-    padding:45px;
-    border-radius:12px;
+    border-radius:15px;
 
-    box-shadow:0 0 30px rgba(0,0,0,.35);
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
 
 }
+
+
+
+/* LOGO */
+
+
+.logo-box img{
+
+    width:140px;
+    height:140px;
+
+    
+
+    border-radius:50%;
+
+    padding:8px;
+
+    display:block;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+
+}
+
+
+
+/* TITULOS */
 
 h1{
 
@@ -43,32 +72,45 @@ h1{
 
 }
 
+
 h2{
 
     color:white;
+
     text-align:center;
+
     margin-top:10px;
 
 }
 
-.login-box p{
+
+p{
 
     color:#9ca3af;
+
     text-align:center;
+
     margin-bottom:35px;
 
 }
 
+
+
+/* CAMPOS */
+
 .campo{
 
     position:relative;
+
     margin-bottom:28px;
 
 }
 
+
 .campo input{
 
     width:100%;
+
     padding:16px;
 
     background:transparent;
@@ -83,6 +125,7 @@ h2{
 
 }
 
+
 .campo input:focus{
 
     outline:none;
@@ -91,11 +134,13 @@ h2{
 
 }
 
+
 .campo label{
 
     position:absolute;
 
     left:15px;
+
     top:15px;
 
     color:#94a3b8;
@@ -106,6 +151,7 @@ h2{
 
 }
 
+
 .campo input:focus+label,
 .campo input:valid+label{
 
@@ -115,13 +161,17 @@ h2{
 
     padding:0 6px;
 
-    background:#13232f;
+    background:#1e293b;
 
     color:#10b981;
 
     font-size:13px;
 
 }
+
+
+
+/* BOTÃO */
 
 button{
 
@@ -145,11 +195,16 @@ button{
 
 }
 
+
 button:hover{
 
     background:#059669;
 
 }
+
+
+
+/* MENSAGEM */
 
 #mensagem{
 
