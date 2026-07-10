@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Grêmio DEGAN</title>
 
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
+
 <body>
 
 <div class="container">
 
-    <main class="conteudo">
+    <div class="login-box">
 
-        <section style="max-width:450px;margin:80px auto;">
+        <h1>🐦‍🔥</h1>
 
-            <h1>🔐 Login Administrativo</h1>
+        <h2>Grêmio DEGAN</h2>
 
-            <p style="margin:15px 0;">
-                Entre com sua conta para acessar o painel.
-            </p>
+        <p>Painel Administrativo</p>
 
-            <input
-                type="email"
-                id="email"
-                placeholder="E-mail">
+        <form id="loginForm">
 
-            <input
-                type="password"
-                id="senha"
-                placeholder="Senha">
+            <div class="campo">
 
-            <button onclick="login()">
+                <input
+                    type="email"
+                    id="email"
+                    required>
+
+                <label>E-mail</label>
+
+            </div>
+
+            <div class="campo">
+
+                <input
+                    type="password"
+                    id="senha"
+                    required>
+
+                <label>Senha</label>
+
+            </div>
+
+            <button type="submit">
                 Entrar
             </button>
 
-        </section>
+        </form>
 
-    </main>
+        <p id="mensagem"></p>
+
+    </div>
 
 </div>
 

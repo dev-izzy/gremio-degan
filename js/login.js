@@ -7,36 +7,53 @@ const db = window.supabase.createClient(
 );
 
 // Se já estiver logado, vai direto para o painel
-window.onload = async function () {
+(async () => {
 
-    const { data } = await db.auth.getSession();
+    const {
+        data: { session }
+    } = await db.auth.getSession();
 
-    if (data.session) {
+    if (session) {
+
         window.location.href = "admin.html";
+
     }
 
-};
+})();
 
-window.login = async function () {
+document
+.getElementById("loginForm")
+.addEventListener("submit", login);
+
+async function login(event){
+
+    event.preventDefault();
 
     const email = document.getElementById("email").value.trim();
+
     const senha = document.getElementById("senha").value;
 
-    if (email === "" || senha === "") {
-        alert("Preencha todos os campos.");
+    const mensagem = document.getElementById("mensagem");
+
+    mensagem.textContent = "";
+
+    const { error } = await db.auth.signInWithPassword({
+
+        email,
+        password: senha
+
+    });
+
+    if(error){
+
+        mensagem.textContent = "E-mail ou senha inválidos.";
+
+        console.error(error);
+
         return;
+
     }
 
-const { data, error } = await db.auth.signInWithPassword({
-    email,
-    password: senha
-});
+    window.location.href = "admin.html";
 
-if (error) {
-    alert(error.message);
-    return;
 }
-
-window.location.replace("admin.html");
-
-};
