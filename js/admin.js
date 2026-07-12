@@ -48,25 +48,27 @@ async function verificarLogin() {
 // MENU
 // ==========================
 
-window.mostrarPagina = function (pagina) {
+window.mostrarPagina = function (pagina, elemento = null) {
 
     document.querySelectorAll(".pagina").forEach(secao => {
-
         secao.classList.remove("ativa");
-
     });
 
     document.getElementById(pagina).classList.add("ativa");
 
+
     document.querySelectorAll(".menu").forEach(botao => {
-
         botao.classList.remove("ativo");
-
     });
 
-    event.target.classList.add("ativo");
+
+    if (elemento) {
+        elemento.classList.add("ativo");
+    }
 
 };
+
+
 
 // ==========================
 // DASHBOARD
