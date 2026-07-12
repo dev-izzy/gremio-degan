@@ -1,5 +1,5 @@
 const supabaseUrl = "https://ywpjippxynugqgwhlvsw.supabase.co";
-const supabaseKey = "SUA_CHAVE_PUBLICA";
+const supabaseKey = "sb_publishable_-33tP63hIJ6kj9n0Jtw6jg_caEqBpXq";
 
 const db = window.supabase.createClient(
     supabaseUrl,
