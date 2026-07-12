@@ -183,8 +183,16 @@ window.logout = async function () {
     window.location.replace("login.html");
 
 };
-document.getElementById("logout").addEventListener("click", async () => {
 
-    await logout();
+
+window.addEventListener("load", () => {
+
+    const botaoLogout = document.getElementById("logout");
+
+    if (botaoLogout) {
+
+        botaoLogout.addEventListener("click", logout);
+
+    }
 
 });
