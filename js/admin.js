@@ -103,7 +103,7 @@ async function carregarSugestoes() {
     const { data, error } = await db
         .from("sugestoes")
         .select("*")
-        .order("id", { ascending: false });
+        .order("data", { ascending: false });
 
     if (error) {
 
@@ -116,28 +116,47 @@ async function carregarSugestoes() {
 
     tabela.innerHTML = "";
 
+    if (data.length === 0) {
+
+        tabela.innerHTML = `
+        <tr>
+
+            <td colspan="4">
+
+                Nenhuma sugestão encontrada.
+
+            </td>
+
+        </tr>`;
+
+        return;
+
+    }
+
     data.forEach(item => {
 
         tabela.innerHTML += `
-            <tr>
 
-                <td>${item.nome}</td>
+        <tr>
 
-                <td>${item.sugestao}</td>
+            <td>${item.nome}</td>
 
-                <td>${new Date(item.data).toLocaleDateString("pt-BR")}</td>
+            <td>${item.sugestao}</td>
 
-                <td>
+            <td>${new Date(item.data).toLocaleString("pt-BR")}</td>
 
-                    <button onclick="excluirSugestao(${item.id})">
+            <td>
 
-                        🗑️
+                <button onclick="excluirSugestao(${item.id})">
 
-                    </button>
+                    🗑 Excluir
 
-                </td>
+                </button>
 
-            </tr>
+            </td>
+
+        </tr>
+
         `;
 
     });
