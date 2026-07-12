@@ -14,7 +14,7 @@ body{
     min-height:100vh;
 
     background:
-    radial-gradient(circle at top,#3b82f6 0%,#1e3a8a 35%,#0f172a 100%);
+    radial-gradient(circle at top,#9f3bf6 0%,#1e3a8a 35%,#200649 100%);
 
     overflow:hidden;
 
@@ -73,7 +73,7 @@ body{
 
 .logo h1{
 
-    font-size:60px;
+    font-size:80%;
 
 }
 
@@ -84,7 +84,10 @@ body{
     margin-top:10px;
 
 }
-
+.logo h6 {
+    color: white;
+    
+}
 .logo p{
 
     color:#dbeafe;
@@ -155,7 +158,7 @@ nav{
 
     background:
 
-    linear-gradient(#60a5fa,#2563eb);
+    linear-gradient(#8160fa,#6a25eb);
 
     color:white;
 
@@ -183,7 +186,7 @@ nav{
 
     background:
 
-    linear-gradient(#ef4444,#b91c1c);
+    linear-gradient(#b944ef,#721cb9);
 
     box-shadow:
 
@@ -360,7 +363,7 @@ button{
 
     background:
 
-    linear-gradient(#60a5fa,#2563eb);
+    linear-gradient(#7460fa,#7460fa);
 
     box-shadow:
 
@@ -412,7 +415,7 @@ th{
 
     background:
 
-    linear-gradient(#60a5fa,#2563eb);
+    linear-gradient(#6f60fa,#3c25eb);
 
     padding:16px;
 
@@ -493,5 +496,153 @@ tr:hover{
 ::-webkit-scrollbar-track{
 
     background:#0f172a;
+
+}
+.logo-box img{
+
+    width:140px;
+    height:140px;
+
+    
+
+    border-radius:50%;
+
+    padding:8px;
+
+    display:block;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+
+}
+.linha{
+
+    margin:25px 0;
+
+    border:none;
+
+    height:1px;
+
+    background:rgba(255,255,255,.3);
+
+}
+
+.topbar{
+
+    height:70px;
+
+    margin-bottom:30px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 25px;
+
+    color:white;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+
+}
+
+.top-info{
+
+    font-weight:bold;
+
+}
+
+.logo-box{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.logo-box img{
+
+    width:150px;
+
+    height:150px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid rgba(255,255,255,.4);
+
+    box-shadow:
+
+    0 0 25px rgba(255,255,255,.25),
+
+    0 10px 20px rgba(0,0,0,.4);
+
+    transition:.35s;
+
+}
+
+.logo-box img:hover{
+
+    transform:scale(1.08) rotate(3deg);
+
+}
+
+.card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:linear-gradient(90deg,#8960fa,#7f14cc,#450e9c);
+
+}
+
+.icone{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+}
+
+.card p{
+
+    font-size:48px;
+
+    font-weight:bold;
+
+}
+
+input:focus,
+textarea:focus{
+
+    outline:none;
+
+    box-shadow:
+
+    0 0 12px #8c60fa;
 
 }
