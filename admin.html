@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Painel Administrativo - Grêmio DEGAN</title>
+    <title>Painel Administrativo | Grêmio DEGAN</title>
+
     <link rel="shortcut icon" href="icone/WhatsApp-Image-2026-07-07-at-18.50.30.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="css/admin.css">
@@ -17,7 +18,7 @@
 
 <div class="container">
 
-    <!-- MENU -->
+    <!-- MENU LATERAL -->
 
     <aside class="sidebar">
 
@@ -25,43 +26,39 @@
 
             <h1>🐦‍🔥</h1>
 
-            <h2>DEGAN</h2>
+            <h2>Grêmio DEGAN</h2>
 
-            <p>Painel Administrativo</p>
+            <span>Painel Administrativo</span>
 
         </div>
 
         <nav>
 
-            <button class="menu ativo" onclick="mostrarPagina('dashboard', this)">
+            <button class="menu ativo"  onclick="mostrarPagina('dashboard')">
                 📊 Dashboard
             </button>
 
-            <button class="menu" onclick="mostrarPagina('sugestoes', this)">
+            <button class="menu" onclick="mostrarPagina('dashboard')">
                 💬 Sugestões
             </button>
 
-            <button class="menu" onclick="mostrarPagina('noticias', this)">
+            <button class="menu" onclick="mostrarPagina('dashboard')">
                 📰 Notícias
             </button>
 
-            <button class="menu" onclick="mostrarPagina('eventos', this)">
+            <button class="menu" onclick="mostrarPagina('dashboard')">
                 📅 Eventos
             </button>
 
-            <button class="menu" onclick="mostrarPagina('diretoria', this)">
+            <button class="menu" onclick="mostrarPagina('dashboard')">
                 👥 Diretoria
             </button>
 
         </nav>
 
-        <div class="logout">
-
-            <button onclick="logout()">
-                🚪 Sair
-            </button>
-
-        </div>
+        <button id="logout">
+            🚪 Sair
+        </button>
 
     </aside>
 
@@ -71,7 +68,7 @@
 
         <!-- DASHBOARD -->
 
-        <section id="dashboard" class="pagina">
+        <section id="dashboard">
 
             <h1>Dashboard</h1>
 
@@ -81,7 +78,7 @@
 
                     <h3>Sugestões</h3>
 
-                    <h2 id="totalSugestoes">0</h2>
+                    <p id="totalSugestoes">0</p>
 
                 </div>
 
@@ -89,7 +86,7 @@
 
                     <h3>Notícias</h3>
 
-                    <h2 id="totalNoticias">0</h2>
+                    <p id="totalNoticias">0</p>
 
                 </div>
 
@@ -97,7 +94,7 @@
 
                     <h3>Eventos</h3>
 
-                    <h2 id="totalEventos">0</h2>
+                    <p id="totalEventos">0</p>
 
                 </div>
 
@@ -107,7 +104,7 @@
 
         <!-- SUGESTÕES -->
 
-        <section id="sugestoes" class="pagina escondido">
+        <section id="sugestoes" class="pagina">
 
             <h1>Sugestões</h1>
 
@@ -120,7 +117,7 @@
                         <th>Nome</th>
                         <th>Sugestão</th>
                         <th>Data</th>
-                        <th>Ação</th>
+                        <th>Ações</th>
 
                     </tr>
 
@@ -136,7 +133,7 @@
 
         <!-- NOTÍCIAS -->
 
-        <section id="noticias" class="pagina escondido">
+        <section id="noticias" class="pagina">
 
             <h1>Nova Notícia</h1>
 
@@ -150,9 +147,9 @@
                 rows="8"
                 placeholder="Digite a notícia"></textarea>
 
-            <button onclick="salvarNoticia()">
+            <button id="btnPublicar">
 
-                Publicar Notícia
+                Publicar
 
             </button>
 
@@ -168,7 +165,7 @@
 
         <!-- EVENTOS -->
 
-        <section id="eventos" class="pagina escondido">
+        <section id="eventos" class="pagina">
 
             <h1>Novo Evento</h1>
 
@@ -186,7 +183,7 @@
                 rows="6"
                 placeholder="Descrição"></textarea>
 
-            <button onclick="salvarEvento()">
+            <button id="btnEvento">
 
                 Salvar Evento
 
@@ -194,7 +191,7 @@
 
             <hr>
 
-            <h2>Eventos</h2>
+            <h2>Eventos Cadastrados</h2>
 
             <div id="listaEventos">
 
@@ -204,9 +201,15 @@
 
         <!-- DIRETORIA -->
 
-        <section id="diretoria" class="pagina escondido">
+        <section id="diretoria" class="pagina">
 
             <h1>Diretoria</h1>
+
+            <button id="btnNovoMembro">
+
+                ➕ Adicionar Membro
+
+            </button>
 
             <table>
 
@@ -216,7 +219,7 @@
 
                         <th>Cargo</th>
                         <th>Nome</th>
-                        <th>Ação</th>
+                        <th>Ações</th>
 
                     </tr>
 
@@ -238,5 +241,4 @@
 <script src="js/admin.js"></script>
 
 </body>
-
 </html>

@@ -1,18 +1,20 @@
 const supabaseUrl = "https://ywpjippxynugqgwhlvsw.supabase.co";
-const supabaseKey = "sb_publishable_-33tP63hIJ6kj9n0Jtw6jg_caEqBpXq";
+const supabaseKey = "SUA_CHAVE_PUBLICA";
 
 const db = window.supabase.createClient(
     supabaseUrl,
     supabaseKey
 );
 
-// ===============================
+// ==========================
 // INICIAR
-// ===============================
+// ==========================
 
 window.onload = async () => {
 
-    await verificarLogin();
+    const logado = await verificarLogin();
+
+    if (!logado) return;
 
     mostrarPagina("dashboard");
 
@@ -21,86 +23,87 @@ window.onload = async () => {
 
 };
 
-// ===============================
-// LOGIN
-// ===============================
+// ==========================
+// VERIFICAR LOGIN
+// ==========================
 
-async function verificarLogin(){
+async function verificarLogin() {
 
-    const { data } = await db.auth.getSession();
+    const {
+        data: { session }
+    } = await db.auth.getSession();
 
-    if(!data.session){
+    if (!session) {
 
-        window.location.href = "login.html";
-        return;
+        window.location.replace("login.html");
+        return false;
 
     }
 
+    return true;
+
 }
 
-// ===============================
+// ==========================
 // MENU
-// ===============================
+// ==========================
 
-window.mostrarPagina = function(nome, botao){
+window.mostrarPagina = function (pagina) {
 
-    document.querySelectorAll(".pagina").forEach(pagina=>{
-        pagina.classList.add("escondido");
+    document.querySelectorAll(".pagina").forEach(secao => {
+
+        secao.classList.remove("ativa");
+
     });
 
-    document.getElementById(nome).classList.remove("escondido");
+    document.getElementById(pagina).classList.add("ativa");
 
-    document.querySelectorAll(".menu").forEach(menu=>{
-        menu.classList.remove("ativo");
+    document.querySelectorAll(".menu").forEach(botao => {
+
+        botao.classList.remove("ativo");
+
     });
 
-    if(botao){
-        botao.classList.add("ativo");
-    }
+    event.target.classList.add("ativo");
 
-}
+};
 
-// ===============================
+// ==========================
 // DASHBOARD
-// ===============================
+// ==========================
 
-async function atualizarDashboard(){
+async function atualizarDashboard() {
 
-    const sugestoes = await db
+    const { count: sugestoes } = await db
         .from("sugestoes")
-        .select("*",{count:"exact",head:true});
+        .select("*", { count: "exact", head: true });
 
-    const noticias = await db
+    const { count: noticias } = await db
         .from("noticias")
-        .select("*",{count:"exact",head:true});
+        .select("*", { count: "exact", head: true });
 
-    const eventos = await db
+    const { count: eventos } = await db
         .from("eventos")
-        .select("*",{count:"exact",head:true});
+        .select("*", { count: "exact", head: true });
 
-    document.getElementById("totalSugestoes").textContent =
-        sugestoes.count ?? 0;
-
-    document.getElementById("totalNoticias").textContent =
-        noticias.count ?? 0;
-
-    document.getElementById("totalEventos").textContent =
-        eventos.count ?? 0;
+    document.getElementById("totalSugestoes").textContent = sugestoes || 0;
+    document.getElementById("totalNoticias").textContent = noticias || 0;
+    document.getElementById("totalEventos").textContent = eventos || 0;
 
 }
 
-// ===============================
+// ==========================
 // SUGESTÕES
-// ===============================
+// ==========================
 
-async function carregarSugestoes(){
+async function carregarSugestoes() {
 
     const { data, error } = await db
         .from("sugestoes")
         .select("*")
-        .order("id",{ascending:false});
+        .order("id", { ascending: false });
 
-    if(error){
+    if (error) {
 
         console.error(error);
         return;
@@ -111,51 +114,51 @@ async function carregarSugestoes(){
 
     tabela.innerHTML = "";
 
-    data.forEach(item=>{
+    data.forEach(item => {
 
         tabela.innerHTML += `
-        <tr>
+            <tr>
 
-            <td>${item.nome}</td>
+                <td>${item.nome}</td>
 
-            <td>${item.sugestao}</td>
+                <td>${item.sugestao}</td>
 
-            <td>${new Date(item.data).toLocaleDateString("pt-BR")}</td>
+                <td>${new Date(item.data).toLocaleDateString("pt-BR")}</td>
 
-            <td>
+                <td>
 
-                <button onclick="excluirSugestao(${item.id})">
+                    <button onclick="excluirSugestao(${item.id})">
 
-                    🗑
+                        🗑️
 
-                </button>
+                    </button>
 
-            </td>
+                </td>
 
-        </tr>
+            </tr>
         `;
 
     });
 
 }
 
-// ===============================
+// ==========================
 // EXCLUIR SUGESTÃO
-// ===============================
+// ==========================
 
-window.excluirSugestao = async function(id){
+window.excluirSugestao = async function (id) {
 
-    if(!confirm("Deseja excluir esta sugestão?"))
-        return;
+    if (!confirm("Deseja excluir esta sugestão?")) return;
 
     const { error } = await db
         .from("sugestoes")
         .delete()
-        .eq("id",id);
+        .eq("id", id);
 
-    if(error){
+    if (error) {
 
         alert("Erro ao excluir.");
+
         console.error(error);
 
         return;
@@ -165,46 +168,16 @@ window.excluirSugestao = async function(id){
     await atualizarDashboard();
     await carregarSugestoes();
 
-}
+};
 
-// ===============================
-// NOTÍCIAS
-// ===============================
-
-window.salvarNoticia = function(){
-
-    alert("Vamos implementar na próxima etapa.");
-
-}
-
-// ===============================
-// EVENTOS
-// ===============================
-
-window.salvarEvento = function(){
-
-    alert("Vamos implementar na próxima etapa.");
-
-}
-
-// ===============================
-// DIRETORIA
-// ===============================
-
-window.salvarDiretoria = function(){
-
-    alert("Vamos implementar na próxima etapa.");
-
-}
-
-// ===============================
+// ==========================
 // LOGOUT
-// ===============================
+// ==========================
 
-window.logout = async function(){
+window.logout = async function () {
 
     await db.auth.signOut();
 
-    window.location.href = "login.html";
+    window.location.replace("login.html");
 
-}
+};
