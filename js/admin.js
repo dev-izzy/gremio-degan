@@ -230,13 +230,13 @@ window.salvarNoticia = async function () {
 
         }]);
 
-    if (error) {
+     if (error) {
 
-        console.error(error);
-        alert("Erro ao publicar notícia.");
-        return;
+     console.error(error);
+     alert(error.message);
+     return;
 
-    }
+}
 
     alert("Notícia publicada com sucesso!");
 
