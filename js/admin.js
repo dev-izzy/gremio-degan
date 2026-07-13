@@ -20,6 +20,7 @@ window.onload = async () => {
 
     await atualizarDashboard();
     await carregarSugestoes();
+    await carregarNoticias();
 
 };
 
@@ -186,8 +187,8 @@ window.excluirSugestao = async function (id) {
 
     }
 
-    await atualizarDashboard();
-    await carregarSugestoes();
+     await carregarSugestoes();
+     await atualizarDashboard();
 
 };
 
@@ -203,15 +204,129 @@ window.logout = async function () {
 
 };
 
+//============
+// noticias 
+//=============
+window.salvarNoticia = async function () {
 
-window.addEventListener("load", () => {
+    const titulo = document.getElementById("tituloNoticia").value.trim();
 
-    const botaoLogout = document.getElementById("logout");
+    const texto = document.getElementById("textoNoticia").value.trim();
 
-    if (botaoLogout) {
+    if (titulo === "" || texto === "") {
 
-        botaoLogout.addEventListener("click", logout);
+        alert("Preencha todos os campos.");
+        return;
 
     }
 
-});
+    const { error } = await db
+        .from("noticias")
+        .insert([{
+
+            titulo: titulo,
+            texto: texto,
+            data: new Date()
+
+        }]);
+
+    if (error) {
+
+        console.error(error);
+        alert("Erro ao publicar notícia.");
+        return;
+
+    }
+
+    alert("Notícia publicada com sucesso!");
+
+    document.getElementById("tituloNoticia").value = "";
+    document.getElementById("textoNoticia").value = "";
+
+     await atualizarDashboard();
+     await carregarNoticias();
+}
+async function carregarNoticias() {
+
+    const { data, error } = await db
+        .from("noticias")
+        .select("*")
+        .order("data", { ascending: false });
+
+    if (error) {
+
+        console.error(error);
+        return;
+
+    }
+
+    const lista = document.getElementById("listaNoticias");
+
+    lista.innerHTML = "";
+
+    if (data.length === 0) {
+
+        lista.innerHTML = "<p>Nenhuma notícia publicada.</p>";
+        return;
+
+    }
+
+    data.forEach(noticia => {
+
+        lista.innerHTML += `
+
+        <div class="card">
+
+            <h3>${noticia.titulo}</h3>
+
+            <p>${noticia.texto}</p>
+
+            <small>
+
+                ${new Date(noticia.data).toLocaleDateString("pt-BR")}
+
+            </small>
+
+            <br><br>
+
+            <button onclick="excluirNoticia(${noticia.id})">
+
+                🗑 Excluir
+
+            </button>
+
+        </div>
+
+        <br>
+
+        `;
+
+    });
+
+}
+//==========
+// excluir noticias
+//==========
+window.excluirNoticia = async function(id){
+
+    if(!confirm("Excluir esta notícia?"))
+        return;
+
+    const { error } = await db
+        .from("noticias")
+        .delete()
+        .eq("id", id);
+
+    if(error){
+
+        console.error(error);
+        alert("Erro ao excluir.");
+        return;
+
+    }
+
+    await carregarNoticias();
+    await atualizarDashboard();
+
+}
+ 
