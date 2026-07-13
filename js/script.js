@@ -45,3 +45,63 @@ window.enviarSugestao = async function(){
     }
 
 };
+// ==========================
+// CARREGAR NOTÍCIAS PÚBLICAS
+// ==========================
+
+async function carregarNoticias(){
+
+    const { data, error } = await clienteDB
+        .from("noticias")
+        .select("*")
+        .order("data", { ascending: false });
+
+
+    if(error){
+
+        console.error(error);
+        return;
+
+    }
+
+
+    const lista = document.getElementById("listaNoticias");
+
+
+    lista.innerHTML = "";
+
+
+    if(data.length === 0){
+
+        lista.innerHTML = "<p>Nenhuma notícia publicada.</p>";
+        return;
+
+    }
+
+
+    data.forEach(noticia => {
+
+        lista.innerHTML += `
+
+        <div class="noticia">
+
+            <h2>${noticia.titulo}</h2>
+
+            <p>${noticia.texto}</p>
+
+            <small>
+                ${new Date(noticia.data).toLocaleDateString("pt-BR")}
+            </small>
+
+        </div>
+
+        <br>
+
+        `;
+
+    });
+
+}
+
+
+window.addEventListener("load", carregarNoticias);
