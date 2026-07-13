@@ -329,4 +329,6 @@ window.excluirNoticia = async function(id){
     await atualizarDashboard();
 
 }
- 
+ // BOTÃO PUBLICAR NOTÍCIA
+document.getElementById("btnPublicar")
+.addEventListener("click", salvarNoticia);
