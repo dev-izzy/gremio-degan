@@ -81,26 +81,23 @@ async function carregarNoticias(){
 
     data.forEach(noticia => {
 
-        lista.innerHTML += `
+    lista.innerHTML += `
 
-        <div class="noticia">
+        <div class="card">
 
-            <h2>${noticia.titulo}</h2>
+            <h3>${noticia.titulo}</h3>
 
             <p>${noticia.texto}</p>
 
             <small>
-                ${new Date(noticia.data).toLocaleDateString("pt-BR")}
+                📅 ${new Date(noticia.data).toLocaleDateString("pt-BR")}
             </small>
 
         </div>
 
-        <br>
+    `;
 
-        `;
-
-    });
-
+});
 }
 
 
