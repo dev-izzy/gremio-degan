@@ -31,13 +31,15 @@ window.onload = async () => {
 
 async function verificarLogin() {
 
-    const {
-        data: { session }
-    } = await db.auth.getSession();
+    const { data, error } = await db.auth.getSession();
 
-    if (!session) {
+    console.log("SESSION:", data.session);
+    console.log("ERROR:", error);
 
-        window.location.replace("login.html");
+    if (!data.session) {
+
+        alert("Sem sessão!");
+
         return false;
 
     }
@@ -45,7 +47,6 @@ async function verificarLogin() {
     return true;
 
 }
-
 // ==========================
 // MENU
 // ==========================
