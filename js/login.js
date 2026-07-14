@@ -3,13 +3,7 @@ const supabaseKey = "sb_publishable_-33tP63hIJ6kj9n0Jtw6jg_caEqBpXq";
 
 const db = window.supabase.createClient(
     supabaseUrl,
-    supabaseKey,
-    {
-        auth: {
-            persistSession: false,
-            autoRefreshToken: true
-        }
-    }
+    supabaseKey
 );
 
 (async () => {
