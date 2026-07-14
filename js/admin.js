@@ -26,8 +26,6 @@ window.onload = async () => {
     await atualizarDashboard();
     await carregarSugestoes();
     await carregarNoticias();
-    await carregarEventos();
-
 };
 
 
@@ -128,9 +126,7 @@ async function atualizarDashboard(){
     .select("*",{count:"exact",head:true});
 
 
-    const {count:eventos} = await db
-    .from("eventos")
-    .select("*",{count:"exact",head:true});
+
 
 
 
@@ -140,10 +136,6 @@ async function atualizarDashboard(){
 
     document.getElementById("totalNoticias").textContent =
     noticias || 0;
-
-
-    document.getElementById("totalEventos").textContent =
-    eventos || 0;
 
 }
 
