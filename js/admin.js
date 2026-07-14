@@ -546,21 +546,13 @@ if(btnPublicar){
 // ==========================
 
 
-
 window.salvarEvento = async function(){
-
 
 
     const nome = document
     .getElementById("nomeEvento")
     .value
     .trim();
-
-
-
-    const data = document
-    .getElementById("dataEvento")
-    .value;
 
 
 
@@ -571,41 +563,39 @@ window.salvarEvento = async function(){
 
 
 
+    const dataEvento = document
+    .getElementById("dataEvento")
+    .value;
 
 
-    if(nome === "" || data === "" || descricao === ""){
 
+
+    if(nome === "" || descricao === "" || dataEvento === ""){
 
         alert("Preencha todos os campos.");
 
         return;
 
-
     }
 
 
 
-
-
-    const {error}=await db
+    const {error} = await db
     .from("eventos")
     .insert([{
 
-        nome,
+        nome: nome,
 
-        data,
+        descricao: descricao,
 
-        descricao
+        data: dataEvento
 
     }]);
 
 
 
 
-
-
     if(error){
-
 
         console.error(error);
 
@@ -613,24 +603,19 @@ window.salvarEvento = async function(){
 
         return;
 
-
     }
 
 
 
-
-
-    alert("Evento cadastrado!");
-
+    alert("Evento publicado com sucesso!");
 
 
 
-    document.getElementById("nomeEvento").value="";
+    document.getElementById("nomeEvento").value = "";
 
-    document.getElementById("dataEvento").value="";
+    document.getElementById("descricaoEvento").value = "";
 
-    document.getElementById("descricaoEvento").value="";
-
+    document.getElementById("dataEvento").value = "";
 
 
 
@@ -640,9 +625,7 @@ window.salvarEvento = async function(){
     await atualizarDashboard();
 
 
-
 };
-
 
 
 
@@ -657,32 +640,26 @@ window.salvarEvento = async function(){
 async function carregarEventos(){
 
 
-
-    const {data,error}=await db
+    const {data,error} = await db
     .from("eventos")
     .select("*")
-    .order("data",{ascending:true});
+    .order("data",{ascending:false});
 
 
 
 
     if(error){
 
-
         console.error(error);
 
         return;
-
 
     }
 
 
 
-
-
-    const lista=document
+    const lista = document
     .getElementById("listaEventos");
-
 
 
 
@@ -690,21 +667,19 @@ async function carregarEventos(){
 
 
 
-
-    lista.innerHTML="";
-
+    lista.innerHTML = "";
 
 
 
 
-    if(!data || data.length===0){
+    if(!data || data.length === 0){
 
 
-        lista.innerHTML=
-        "<p>Nenhum evento cadastrado.</p>";
+        lista.innerHTML = 
+        "<p>Nenhum evento publicado.</p>";
+
 
         return;
-
 
     }
 
@@ -712,8 +687,7 @@ async function carregarEventos(){
 
 
 
-    data.forEach(evento=>{
-
+    data.forEach(evento => {
 
 
         lista.innerHTML += `
@@ -728,7 +702,6 @@ async function carregarEventos(){
             <p>${evento.descricao}</p>
 
 
-
             <small>
 
             📅 ${new Date(evento.data)
@@ -737,10 +710,7 @@ async function carregarEventos(){
             </small>
 
 
-
-
             <br><br>
-
 
 
             <button onclick="excluirEvento(${evento.id})">
@@ -748,7 +718,6 @@ async function carregarEventos(){
             🗑 Excluir
 
             </button>
-
 
 
         </div>
@@ -760,9 +729,7 @@ async function carregarEventos(){
         `;
 
 
-
     });
-
 
 
 }
@@ -782,15 +749,14 @@ window.excluirEvento = async function(id){
 
 
 
-    if(!confirm("Deseja excluir este evento?"))
+    if(!confirm("Excluir este evento?"))
 
     return;
 
 
 
 
-
-    const {error}=await db
+    const {error} = await db
     .from("eventos")
     .delete()
     .eq("id",id);
@@ -798,16 +764,13 @@ window.excluirEvento = async function(id){
 
 
 
-
     if(error){
-
 
         console.error(error);
 
         alert(error.message);
 
         return;
-
 
     }
 
@@ -817,33 +780,6 @@ window.excluirEvento = async function(id){
     await carregarEventos();
 
     await atualizarDashboard();
-
-
-
-};
-
-
-
-
-
-
-
-// ==========================
-// LOGOUT
-// ==========================
-
-
-window.logout = async function(){
-
-
-
-    await db.auth.signOut();
-
-
-
-    window.location.replace(
-        "login.html"
-    );
 
 
 };
