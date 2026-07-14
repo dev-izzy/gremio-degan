@@ -28,18 +28,16 @@ window.onload = async () => {
 // ==========================
 // VERIFICAR LOGIN
 // ==========================
-
 async function verificarLogin() {
 
     const { data, error } = await db.auth.getSession();
 
-    console.log("SESSION:", data.session);
-    console.log("ERROR:", error);
+    console.log("Sessão no admin:", data.session);
+    console.log("Erro:", error);
 
     if (!data.session) {
 
-        alert("Sem sessão!");
-
+        window.location.replace("login.html");
         return false;
 
     }
