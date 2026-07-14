@@ -21,6 +21,7 @@ window.onload = async () => {
     await atualizarDashboard();
     await carregarSugestoes();
     await carregarNoticias();
+    await carregarEventos();
 
 };
 
@@ -332,3 +333,132 @@ window.excluirNoticia = async function(id){
  // BOTÃO PUBLICAR NOTÍCIA
 document.getElementById("btnPublicar")
 .addEventListener("click", salvarNoticia);
+
+
+// ==========================
+// EVENTOS
+// ==========================
+
+window.salvarEvento = async function () {
+
+    const nome = document.getElementById("nomeEvento").value.trim();
+
+    const data = document.getElementById("dataEvento").value;
+
+    const descricao = document.getElementById("descricaoEvento").value.trim();
+
+    if (nome === "" || data === "" || descricao === "") {
+
+        alert("Preencha todos os campos.");
+        return;
+
+    }
+
+    const { error } = await db
+        .from("eventos")
+        .insert([{
+
+            nome,
+            data,
+            descricao
+
+        }]);
+
+    if (error) {
+
+        console.error(error);
+        alert(error.message);
+        return;
+
+    }
+
+    alert("Evento cadastrado!");
+
+    document.getElementById("nomeEvento").value = "";
+    document.getElementById("dataEvento").value = "";
+    document.getElementById("descricaoEvento").value = "";
+
+    await atualizarDashboard();
+    await carregarEventos();
+
+}
+async function carregarEventos() {
+
+    const { data, error } = await db
+        .from("eventos")
+        .select("*")
+        .order("data", { ascending: true });
+
+    if (error) {
+
+        console.error(error);
+        return;
+
+    }
+
+    const lista = document.getElementById("listaEventos");
+
+    lista.innerHTML = "";
+
+    if (data.length === 0) {
+
+        lista.innerHTML = "<p>Nenhum evento cadastrado.</p>";
+        return;
+
+    }
+
+    data.forEach(evento => {
+
+        lista.innerHTML += `
+
+        <div class="card">
+
+            <h3>${evento.nome}</h3>
+
+            <p>${evento.descricao}</p>
+
+            <small>
+
+                📅 ${new Date(evento.data).toLocaleDateString("pt-BR")}
+
+            </small>
+
+            <br><br>
+
+            <button onclick="excluirEvento(${evento.id})">
+
+                🗑 Excluir
+
+            </button>
+
+        </div>
+
+        <br>
+
+        `;
+
+    });
+
+}
+window.excluirEvento = async function(id){
+
+    if(!confirm("Deseja excluir este evento?"))
+        return;
+
+    const { error } = await db
+        .from("eventos")
+        .delete()
+        .eq("id", id);
+
+    if(error){
+
+        console.error(error);
+        alert(error.message);
+        return;
+
+    }
+
+    await carregarEventos();
+    await atualizarDashboard();
+
+}
