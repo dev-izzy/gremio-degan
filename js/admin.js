@@ -195,14 +195,13 @@ window.excluirSugestao = async function (id) {
 // ==========================
 
 document.getElementById("btnPublicar")
-    .addEventListener("click", salvarNoticia);
+    .addEventListener("click", window.salvarNoticia);
 
 document.getElementById("btnEvento")
-    .addEventListener("click", salvarEvento);
+    .addEventListener("click", window.salvarEvento);
 
 document.getElementById("logout")
-    .addEventListener("click", logout);
-
+    .addEventListener("click", window.logout);
 // ==========================
 // DESLOGAR AO FECHAR A ABA
 // ==========================
