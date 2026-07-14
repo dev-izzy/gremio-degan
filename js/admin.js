@@ -115,7 +115,6 @@ window.mostrarPagina = function(pagina, elemento=null){
 
 async function atualizarDashboard(){
 
-
     const {count:sugestoes} = await db
     .from("sugestoes")
     .select("*",{count:"exact",head:true});
@@ -127,15 +126,18 @@ async function atualizarDashboard(){
 
 
 
+    const totalSugestoes = document.getElementById("totalSugestoes");
+    const totalNoticias = document.getElementById("totalNoticias");
 
 
+    if(totalSugestoes){
+        totalSugestoes.textContent = sugestoes || 0;
+    }
 
-    document.getElementById("totalSugestoes").textContent =
-    sugestoes || 0;
 
-
-    document.getElementById("totalNoticias").textContent =
-    noticias || 0;
+    if(totalNoticias){
+        totalNoticias.textContent = noticias || 0;
+    }
 
 }
 
